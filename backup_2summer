@@ -1,0 +1,11 @@
+#!/bin/bash -e
+. config.sh
+
+echo "> backup started at $(date)"
+for i in ${BACKUP_FOLDERS}; do
+        echo "> -- backing up $i --"
+        rsync --max-size=50m --exclude-from=/home/zilka/devel/_sys/backup.conf -e ssh -a $i ${BACKUP_USER}@${BACKUP_SERVER}:${BACKUP_PATH}/$(dirname $i)
+        echo "> $i rsynced."
+done
+echo "> all done"
+date

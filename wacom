@@ -1,0 +1,8 @@
+#!/bin/bash
+xsetwacom --set "Wacom Bamboo 2FG 4x5 Finger touch" Touch off
+xsetwacom --set "Wacom Bamboo 2FG 4x5 Finger touch" PressureCurve 0 15 85 100
+
+#xsetwacom --set "Wacom Bamboo 2FG 4x5 Finger pad" Button 1 "key ctrl s"
+#xsetwacom --set "Wacom Bamboo 2FG 4x5 Finger pad" Button 2 "key ctrl shift e"
+#xsetwacom --set "Wacom Bamboo 2FG 4x5 Finger pad" Button 3 "key ctrl shift p"
+xsetwacom --set "Wacom Bamboo 2FG 4x5 Finger pad" Button 4 "key ctrl z"

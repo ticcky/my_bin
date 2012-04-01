@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+REPO_NAME=$1
+GITOLITE_DIR=/home/zilka/devel/other/gitolite-admin
+GITOLITE_CONF=$GITOLITE_DIR/conf/gitolite.conf
+
+ALREADY_THERE=$(cat $GITOLITE_CONF | grep "$REPO_NAME" | wc -l)
+
+if (($ALREADY_THERE == 0)); then
+        echo "repo    $REPO_NAME" >> $GITOLITE_CONF
+        echo "        RW+     =       zilka" >> $GITOLITE_CONF
+        echo "" >> $GITOLITE_CONF
+        
+        (cd $GITOLITE_DIR; git commit -am "$(date) - $REPO_NAME"; git push)
+else
+        echo "repository is already initiated at the server"
+fi
+
+
+git init
+git remote add origin git@zilka.me:$REPO_NAME
+touch README
+git add README
+git commit -m "init"
+git push -u origin master

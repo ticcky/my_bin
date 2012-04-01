@@ -1,0 +1,8 @@
+XRANDR_OUT=$(xrandr | grep LVDS1)
+
+if [[ $XRANDR_OUT =~ "left (" ]]; then
+                            xrandr --output LVDS1 --rotate normal
+else
+                            xrandr --output LVDS1 --rotate left
+fi
+

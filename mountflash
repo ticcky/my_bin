@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+DEVNAME=$(dmesg | grep -e "sd.:" | sed "s/^.* \([^ ]*\)$/\1/")
+
+sudo mount /dev/$DEVNAME /mnt/flash 

@@ -1,0 +1,14 @@
+#!/bin/bash
+# Will extract all pdf links from a web page and stash it to the given directory
+#
+# ./dl_web_dir [URL OF DIRECTORY LISTING] {[DEST DIR] [FILE SUFFIX]}
+
+URL=$1
+DST="/tmp/"
+SUFFIX=".pdf"
+[ $2 != "" ] && DST=$2
+[ $3 != "" ] && SUFFIX=$3
+
+for file in $(wget ${URL} -O - | grep -oe "href=\(\"[^\"]*${SUFFIX}\)\"" | sed 's/href="\([^"]*\)"/\1/'); do
+        wget -O ${DST}/${file} ${URL}${file}
+done
